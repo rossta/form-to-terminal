@@ -2,6 +2,9 @@
 'use strict';
 
 const spawn = require('child_process').spawn;
+const fs = require('fs'),
+    path = require('path');
+const dirString = path.dirname(fs.realpathSync(__filename));
 
 const google = "https://docs.google.com/forms/d/e/__IDENTIFIER__/viewform";
 const CONFIG = {
@@ -29,7 +32,7 @@ const urls = args.map(function(arg) {
   return url;
 });
 
-const child = spawn('casperjs', ['index.js'].concat(urls));
+const child = spawn('casperjs', [dirString + '/../index.js'].concat(urls));
 
 child.stdin.setEncoding('utf-8');
 child.stdout.pipe(process.stdout);
