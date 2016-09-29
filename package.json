@@ -1,6 +1,6 @@
 {
   "name": "form-to-terminal",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Fill out Google Forms on the command line",
   "main": "index.js",
   "scripts": {
