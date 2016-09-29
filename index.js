@@ -98,11 +98,13 @@ for(var j = 0; j < urls.length; j++) {
       input.value = readLine();
       return input;
     });
+
+    page.echo("answers", answers);
   });
 
   casper.then(function() {
     this.evaluate(submitAnswers, {answers: answers});
-    page.echo("");
+    this.echo("");
     this.echo("Thanks!");
   });
 }

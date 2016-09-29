@@ -29,7 +29,7 @@ const urls = args.map(function(arg) {
   return url;
 });
 
-const child = spawn('casperjs', ['casper-index.js'].concat(urls));
+const child = spawn('casperjs', ['index.js'].concat(urls));
 
 child.stdin.setEncoding('utf-8');
 child.stdout.pipe(process.stdout);
