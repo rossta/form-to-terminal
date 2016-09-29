@@ -1,0 +1,30 @@
+{
+  "name": "form-to-terminal",
+  "version": "1.0.0",
+  "description": "Fill out Google Forms on the command line",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"no tests\" && exit 0",
+    "preinstall": "casperjs",
+    "patch-release": "npm version patch && npm publish && git push --follow-tags"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/rossta/form-to-terminal.git"
+  },
+  "keywords": [
+    "'google",
+    "docs'",
+    "terminal",
+    "cli"
+  ],
+  "author": "Ross Kaffenberger",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/rossta/form-to-terminal/issues"
+  },
+  "homepage": "https://github.com/rossta/form-to-terminal#readme",
+  "bin": {
+    "ftt": "bin/ftt.js"
+  }
+}
