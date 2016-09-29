@@ -86,8 +86,9 @@ for(var j = 0; j < urls.length; j++) {
 
   casper.then(function() {
     var page = this;
+    page.echo("");
     page.echo("Please fill out " + formTitle);
-    page.echo("----------------" + formTitle.length);
+    page.echo("----------------" + Array(formTitle.length + 1).join('-'));
     answers = page.evaluate(getFormInputs)
 
     answers.filter(function(input) {
