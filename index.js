@@ -30,31 +30,16 @@ function getFormTitle() {
   return firstTextContent(document.forms[0]);
 }
 
-function getFormInputs() {
-  function getFormInputsForForm(form) {
-    var inputEls = form.querySelectorAll("input");
-    var inputs = [];
-    var attrs, inputEl;
-
-    for (var i = 0; i < inputEls.length; i++) {
-      attrs = {};
-      inputEl = inputEls[i];
-
-      attrs.type = inputEl.type;
-      attrs.label = inputEl.getAttribute('aria-label');
-      attrs.required = inputEl.required;
-      attrs.value = inputEl.value;
-      attrs.name = inputEl.name;
-      attrs.id = inputEl.id;
-
-      inputs.push(attrs);
-    }
-
-    return inputs;
-  }
-
-  return getFormInputsForForm(document.forms[0]);
-}
+const getFormInputs = () => ((form) => Array
+  .from(form.querySelectorAll('input'))
+  .map((input) => ({
+    type: input.type,
+    label: input.getAttribute('aria-label'),
+    required: input.required,
+    value: input.value,
+    name: input.name,
+    id: input.id,
+  })))(document.forms[0])
 
 function submitAnswers(answers) {
   function fillOutForm(form, answers) {
