@@ -1,5 +1,5 @@
 // Executes in the phantomjs runtime via casperjs
-var casper = require("casper").create();
+var casper = require('casper').create();
 var urls = casper.cli.args;
 var system = require('system');
 
@@ -32,7 +32,7 @@ function getFormTitle() {
 
 function getFormInputs() {
   function getFormInputsForForm(form) {
-    var inputEls = form.querySelectorAll("input");
+    var inputEls = form.querySelectorAll('input');
     var inputs = [];
     var attrs, inputEl;
 
@@ -61,7 +61,7 @@ function submitAnswers(answers) {
     var answer, input;
     for(var i = 0; i < answers.length; i++) {
       answer = answers[i];
-      input = form.querySelector("[name='"+answer.name+"']");
+      input = form.querySelector('[name="' + answer.name + '"]');
       input.value = answer.value;
     }
     return form.submit();
@@ -74,10 +74,10 @@ var formTitle, answers, url;
 
 for(var j = 0; j < urls.length; j++) {
   url = urls[j];
-  casper.echo("Fetching Google Form at: " + url);
+  casper.echo('Fetching Google Form at: ' + url);
 
   casper.start(url, function() {
-    this.waitForSelector("form");
+    this.waitForSelector('form');
   });
 
   casper.then(function() {
@@ -86,16 +86,16 @@ for(var j = 0; j < urls.length; j++) {
 
   casper.then(function() {
     var page = this;
-    page.echo("");
-    page.echo("Please fill out " + formTitle);
-    page.echo("----------------" + Array(formTitle.length + 1).join('-'));
+    page.echo('');
+    page.echo('Please fill out ' + formTitle);
+    page.echo('----------------' + Array(formTitle.length + 1).join('-'));
     answers = page.evaluate(getFormInputs)
 
     answers.filter(function(input) {
-      return input.type == "text";
+      return input.type == 'text';
     }).map(function(input, i) {
-      page.echo("");
-      page.echo(""+(i+1)+") "+input.label+":");
+      page.echo('');
+      page.echo('' + (i + 1) + ') ' + input.label + ':');
       input.value = readLine();
       return input;
     });
@@ -105,8 +105,8 @@ for(var j = 0; j < urls.length; j++) {
 
   casper.then(function() {
     this.evaluate(submitAnswers, {answers: answers});
-    this.echo("");
-    this.echo("Thanks!");
+    this.echo('');
+    this.echo('Thanks!');
   });
 }
 
